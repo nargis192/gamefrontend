@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Game from './components/Game';
+import Scores from './components/Scores';
+import Navbar from './components/Navbar';
+import PrivateRoute from './utils/PrivateRoute';
 
-function App() {
+const App = () => {
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [userId, setUserId] = useState(localStorage.getItem('userId'));
+
+  const handleSetToken = (newToken, newUserId) => {
+    setToken(newToken);
+    setUserId(newUserId);
+    if (newToken) {
+      localStorage.setItem('token', newToken);
+      localStorage.setItem('userId', newUserId); // Ensure userId is saved
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+    }
+  };
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar token={token} setToken={handleSetToken} />
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login setToken={handleSetToken} setUserId={setUserId} />} />
+        <Route
+          path="/game"
+          element={
+            <PrivateRoute token={token}>
+              <Game token={token} userId={userId} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/scores"
+          element={
+            <PrivateRoute token={token}>
+              <Scores userId={userId} />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
