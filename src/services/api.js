@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://game-3-pyiu.onrender.com/api';
 
 export const loginUser = async (credentials) => {
   const response = await fetch(`${API_URL}/auth/login`, {

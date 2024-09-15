@@ -1,4 +1,4 @@
-/* General styles */
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   justify-content: center;
   height: 100vh;
   background-color: #f0f4f7;
-  padding: 20px; /* Add padding for smaller screens */
+  padding: 20px;
 }
 
 .login-container h2 {
@@ -14,7 +14,7 @@
   font-size: 2.5rem;
   color: #2c3e50;
   font-weight: 600;
-  text-align: center; /* Center-align for smaller screens */
+  text-align: center; 
 }
 
 .login-container form {
@@ -68,38 +68,35 @@
   text-align: center;
 }
 
-/* Media Queries for Responsive Design */
-
-/* For tablets and small laptops */
 @media (max-width: 768px) {
   .login-container form {
-    width: 300px; /* Slightly reduce form width */
-    padding: 25px; /* Reduce padding for smaller screens */
+    width: 300px;
+    padding: 25px; 
   }
 
   .login-container h2 {
-    font-size: 2rem; /* Reduce heading size */
+    font-size: 2rem; 
   }
 
   .login-container input, .login-container button {
-    font-size: 1rem; /* Slightly reduce input/button font size */
+    font-size: 1rem; 
   }
 }
 
-/* For mobile devices */
+
 @media (max-width: 480px) {
   .login-container form {
-    width: 100%; /* Full width for small screens */
-    max-width: 350px; /* Limit maximum width */
+    width: 100%;
+    max-width: 350px; 
     padding: 20px;
   }
 
   .login-container h2 {
-    font-size: 1.8rem; /* Further reduce heading size */
+    font-size: 1.8rem; 
   }
 
   .login-container input, .login-container button {
     font-size: 1rem;
-    padding: 10px; /* Reduce padding for mobile */
+    padding: 10px; 
   }
 }

@@ -13,7 +13,7 @@ const Game = ({ token, userId }) => {
   const [isGameActive, setIsGameActive] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
-  // Fetch high score when component mounts
+  
   useEffect(() => {
     const fetchHighScore = async () => {
       try {
@@ -30,7 +30,6 @@ const Game = ({ token, userId }) => {
     fetchHighScore();
   }, [userId]);
 
-  // Initialize cards on mount
   useEffect(() => {
     const initializeCards = () => {
       const cardValues = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I', 'J', 'J', 'K', 'K', 'L', 'L'];
@@ -44,7 +43,7 @@ const Game = ({ token, userId }) => {
     initializeCards();
   }, []);
 
-  // Timer logic
+
   useEffect(() => {
     let interval = null;
 
@@ -57,14 +56,14 @@ const Game = ({ token, userId }) => {
     if (timer >= 60) {
       clearInterval(interval);
       setGameOver(true);
-      setIsGameActive(false);  // Stop the game
+      setIsGameActive(false); 
       setMessage('Game Over! Time is up.');
     }
 
     return () => clearInterval(interval);
   }, [isGameActive, timer, gameOver]);
 
-  // Handle card click logic
+
   const handleCardClick = (index) => {
     if (flippedIndices.length === 2 || cards[index].flipped || gameOver) return;
 
@@ -82,7 +81,7 @@ const Game = ({ token, userId }) => {
         setMatchedCards([...matchedCards, firstIndex, secondIndex]);
         setScore(score + 1);
 
-        // Check if all cards are matched and stop the game if true
+        
         if (matchedCards.length + 2 === cards.length) {
           setIsGameActive(false);
           setMessage('Congratulations! You matched all cards!');
