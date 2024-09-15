@@ -6,6 +6,7 @@ import Game from './components/Game';
 import Scores from './components/Scores';
 import Navbar from './components/Navbar';
 import PrivateRoute from './utils/PrivateRoute';
+import './App.css'
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -16,18 +17,18 @@ const App = () => {
     setUserId(newUserId);
     if (newToken) {
       localStorage.setItem('token', newToken);
-      localStorage.setItem('userId', newUserId); // Ensure userId is saved
+      localStorage.setItem('userId', newUserId);
     } else {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
     }
   };
-  
 
   return (
     <Router>
       <Navbar token={token} setToken={handleSetToken} />
       <Routes>
+     
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login setToken={handleSetToken} setUserId={setUserId} />} />
         <Route

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loginUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = ({ setToken, setUserId }) => {
   const [username, setUsername] = useState('');
@@ -12,21 +13,19 @@ const Login = ({ setToken, setUserId }) => {
     e.preventDefault();
     try {
       const result = await loginUser({ username, password });
-      console.log('Login result:', result); // Log the result to check `userId`
       if (result.error) {
         setMessage(result.error);
       } else {
-        setToken(result.token, result.userId); // Pass both token and userId
+        setToken(result.token, result.userId);
         navigate('/game');
       }
     } catch (err) {
       setMessage('Failed to login. Please try again later.');
     }
   };
-  
 
   return (
-    <div>
+    <div className='login-container'>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input

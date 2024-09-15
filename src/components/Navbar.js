@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../components/Navbar.css'
 
 const Navbar = ({ token, setToken }) => {
   const handleLogout = () => {
@@ -8,7 +9,8 @@ const Navbar = ({ token, setToken }) => {
 
   return (
     <nav>
-      <Link to="/">Home</Link>
+      <div className='navbar-container'>'
+     
       {!token ? (
         <>
           <Link to="/signup">Signup</Link>
@@ -21,6 +23,8 @@ const Navbar = ({ token, setToken }) => {
           <button onClick={handleLogout}>Logout</button>
         </>
       )}
+      </div>
+      
     </nav>
   );
 };

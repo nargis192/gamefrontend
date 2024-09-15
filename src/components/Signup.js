@@ -1,36 +1,32 @@
 import React, { useState } from 'react';
 import { signupUser } from '../services/api';
-
+import './Signup.css';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
-      console.log("clicked signup")
       const result = await signupUser({ username, password });
-      
       if (result.error) {
         setMessage(result.error);
       } else {
-        console.log(result.data)
+        navigate('/login');
         setMessage('Signup successful! Please login.');
-
       }
     } catch (err) {
       setMessage('Failed to signup. Please try again later.');
-      console.error('Signup error:', err);
     }
   };
-  
 
   return (
-    <div>
-      <h2>Signup</h2>
+    <div className='signup-container'>
+      <h2 >Signup</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

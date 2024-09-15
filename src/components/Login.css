@@ -1,0 +1,105 @@
+/* General styles */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f4f7;
+  padding: 20px; /* Add padding for smaller screens */
+}
+
+.login-container h2 {
+  margin-bottom: 25px;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center; /* Center-align for smaller screens */
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.login-container form:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.login-container input {
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.login-container button {
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-container p {
+  color: #e74c3c;
+  margin-top: 15px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Media Queries for Responsive Design */
+
+/* For tablets and small laptops */
+@media (max-width: 768px) {
+  .login-container form {
+    width: 300px; /* Slightly reduce form width */
+    padding: 25px; /* Reduce padding for smaller screens */
+  }
+
+  .login-container h2 {
+    font-size: 2rem; /* Reduce heading size */
+  }
+
+  .login-container input, .login-container button {
+    font-size: 1rem; /* Slightly reduce input/button font size */
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  .login-container form {
+    width: 100%; /* Full width for small screens */
+    max-width: 350px; /* Limit maximum width */
+    padding: 20px;
+  }
+
+  .login-container h2 {
+    font-size: 1.8rem; /* Further reduce heading size */
+  }
+
+  .login-container input, .login-container button {
+    font-size: 1rem;
+    padding: 10px; /* Reduce padding for mobile */
+  }
+}

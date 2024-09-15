@@ -1,43 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { getScores } from '../services/api';
+import './Scores.css';
 
-const Scores = ({ token }) => {
+const Scores = ({ userId }) => {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
     const fetchScores = async () => {
       try {
-        const userId = localStorage.getItem('userId');
-        if (userId) {
-          const data = await getScores(userId);
-          setScores(data);
-        }
+        const result = await getScores(userId);
+        setScores(result);
       } catch (error) {
         console.error('Error fetching scores:', error);
       }
     };
-
     fetchScores();
-  }, [token]);
+  }, [userId]);
 
   return (
-    <div>
-      <h2>Scoreboard</h2>
-      <ul>
-        {scores.length > 0 ? (
-          scores.map((score) => (
-            <li key={score._id}>
-              Score: {score.score}, Date: {new Date(score.date).toLocaleDateString()}
-            </li>
-          ))
-        ) : (
-          <p>No scores available.</p>
-        )}
-      </ul>
+    <div className="scores-container">
+      <h2>Your Scores</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Score</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {scores.map((score, index) => (
+            <tr key={index}>
+              <td>{score.score}</td>
+              <td>{new Date(score.date).toLocaleDateString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
 export default Scores;
+
 
 
